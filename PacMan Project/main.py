@@ -1,5 +1,4 @@
 import pygame
-<<<<<<< HEAD
 from constants import SCR_WIDTH, SCR_HEIGHT, FPS
 from game_state_manager import GameStateManager
 from input_handler import InputHandler
@@ -31,7 +30,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
 def main():
     pygame.init()
     pygame.mixer.init()
@@ -64,4 +62,3 @@ def main():
     pygame.quit()
     if __name__ == "__main__":
         main()
->>>>>>> c9441631f6679ee1256bd6d0941b633cc3072f25

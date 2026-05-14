@@ -1,38 +1,32 @@
-<<<<<<< HEAD
 import pygame
-from constants import BLACK
+from constants import BLACK, GAME_OVER, WIN, WHITE, YELLOW, RED, SCR_WIDTH, SCR_HEIGHT, PAUSED
 
 class Renderer:
     def __init__(self, screen):
         self.screen = screen
+        self.font_large = pygame.font.SysFont("arial", 60, bold=True)
+        self.font_small = pygame.font.SysFont("arial", 36)
 
     def draw_all(self, maze, pacman, ghosts, hud, popups, game_state, ready_timer):
         self.screen.fill(BLACK)
-        pygame.display.flip()
-=======
-from turtle import fill
-from constraints import BLACK, GAME_OVER, WIN
-import pygame
-
-class renderer:
-    def __init__ (self, screen):
-        self.screen = screen
-    def draw_all(self, maze, pacman, ghosts, hud, popups, game_state, ready_timer):
-        fill(self.screen, BLACK)
         maze.draw(self.screen)
         pacman.draw(self.screen)
         for ghost in ghosts:
             ghost.draw(self.screen)
         for popup in popups:
             popup.draw(self.screen)
-            hud.draw(self.screen, pacman, current_level, high_score)
-            if game_state == "PAUSED":
-                draw_centered_text(self.screen, "PAUSED", 60)
-            if ready_timer > 0:
-                draw_centered_text(self.screen, "READY", 60)
-            if game_state == GAME_OVER:
-                draw_centered_text(self.screen, "GAME OVER", color=RED, y=CENTER_Y)
-            if game_state == WIN:
-                draw_centered_text(self.screen, "YOU WIN!", color=YELLOW, y=CENTER_Y)
-            pygame.display.flip()
->>>>>>> c9441631f6679ee1256bd6d0941b633cc3072f25
+        hud.draw(self.screen)
+        if game_state == PAUSED:
+            self._draw_centered_text("PAUSED", self.font_large, WHITE)
+        if ready_timer > 0:
+            self._draw_centered_text("READY!", self.font_large, YELLOW)
+        if game_state == GAME_OVER:
+            self._draw_centered_text("GAME OVER", self.font_large, RED)
+        if game_state == WIN:
+            self._draw_centered_text("YOU WIN!", self.font_large, YELLOW)
+        pygame.display.flip()
+
+    def _draw_centered_text(self, text, font, color):
+        surface = font.render(text, True, color)
+        rect = surface.get_rect(center=(SCR_WIDTH // 2, SCR_HEIGHT // 2))
+        self.screen.blit(surface, rect)
