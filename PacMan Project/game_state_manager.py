@@ -9,11 +9,12 @@ class GameStateManager:
         self.state         = START
         self.level         = 1
         self.high_score    = 0
+        self.running       = True
+        self.ready_timer   = 3000
         self.scatter_timer = SCATTER_DURATION
         self.chase_timer   = 0
         self.in_scatter    = True
         self.popups        = []
-        self.ready_timer   = 3000
 
     def update(self, delta_time, pacman, ghosts, maze):
         if self.state == START:
